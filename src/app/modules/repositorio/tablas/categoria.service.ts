@@ -48,8 +48,8 @@ export class CategoriaService {
     };
 
     // HASTA SOLUCIONAR REL PROBLEMA DE CORS
-    return of(mockCategorias.data);
-    // return this.http.get<ICategoria[]>(this.apiBaseURLService, opciones)
+    // return of(mockCategorias.data);
+    return this.http.get<ICategoria[]>(this.apiBaseURLService, opciones)
 
   }
 
