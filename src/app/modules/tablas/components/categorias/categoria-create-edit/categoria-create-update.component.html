@@ -1,0 +1,90 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-body">
+
+            <section id="horizontal-form-layouts">
+
+                <div class="row">
+                        <ng-container mCardBody>
+                        <form class="form form-horizontal" [formGroup]="formulario">
+                            <div class="form-body">
+                            <h4 class="form-section"><i class="la la-eye"></i> {{ _tituloForm }} </h4>
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group row mx-auto">
+                                            <label class="col-md-3 label-control" for="html_categoryid">Código</label>
+                                            <div class="col-md-9">
+                                            <input type="text" id="html_categoryid" class="form-control border-primary"
+                                                placeholder="Código" [attr.disabled]="_ModoEdicion ? true : (_autoGenerarID ? true : null)" formControlName="html_categoryid">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row mx-auto">
+                                            <label class="col-md-3 label-control" for="html_sname">Descripción</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="html_sname" class="form-control border-primary"
+                                                placeholder="Descripción" formControlName="html_sname">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last mx-auto">
+                                            <label class="col-md-3 label-control" for="html_status">Estatus</label>
+                                            <div class="col-md-9">
+                                                <div class="float-left">
+                                                <ui-switch id="html_status" formControlName="html_status" class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                                                </div> 
+                                            </div>  
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- <h4 class="form-section"><i class="feather ft-mail"></i> Contacto</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row last mx-auto">
+                                        <label class="col-md-3 label-control" for="html_direccion">Dirección</label>
+                                        <div class="col-md-9">
+                                        <input type="text" id="html_direccion" class="form-control border-primary"
+                                            placeholder="Username" formControlName="html_direccion">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                         -->
+
+                            <div class="form-actions text-right">
+                                <button type="button" class="btn btn-primary mr-1" [attr.disabled]="_CargaDatosCompleta? null:true" (click)="guardarRegistro()">
+                                    <i class="la la-check"></i> Guardar
+                                </button>                                
+                                <button type="button" class="btn btn-warning" (click)="cancelar()">
+                                    <i class="feather ft-x"></i> Cancelar
+                                </button>
+                            </div>
+                        </form>
+
+                        </ng-container>
+
+
+                        <!-- </m-card> -->
+                        
+                    <!-- </div> -->
+
+                </div>
+
+            </section>
+
+
+        </div>
+    </div>
+</div>

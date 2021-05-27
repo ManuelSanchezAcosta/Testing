@@ -1,0 +1,128 @@
+<!-- <p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog> -->
+
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+
+    <div class="content-body">
+      <section id="add-row">
+        <div class="row">
+          <div class="col-12" *blockUI="'bloqueFormulario'; message: 'Cargando'">
+            <m-card [options]="options" (reloadFunction)="getRegistros(true)">
+
+              <ng-container mCardHeaderTitle>
+                Archivo de {{ tituloMantenimiento }}
+              </ng-container>
+
+              <ng-container mCardBody>
+
+                <div>
+                  <button name="btnNuevo" class="btn btn-info btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="create()">Nuevo</button>
+                  <button name="btnModificar" class="btn btn-info btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="update()">Modificar</button>
+                  <button name="btnEliminar" class="btn btn-info btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="delete()">Eliminar</button>
+                  <button name="btnImprimir" class="btn btn-info btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="print('Imprimible')">Imprimir</button>
+
+                  <button name="btnImprimir" class="btn btn-info btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="CopiarAJson()">JSON</button>
+                  <button type="button" class="btn btn-success btn-min-width box-shadow-2 mr-1 mb-1"
+                    _ngcontent-ijs-c12="" (click)="dt.exportCSV()">CSV</button>
+                  <button name="btnImprimir" class="btn btn-success btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="getExcelData()">EXCEL</button>
+                  <button name="btnImprimir" class="btn btn-warning btn-min-width box-shadow-2 mr-1 mb-1" type="button"
+                    _ngcontent-ijs-c12="" (click)="getPdfData()">PDF</button>
+                </div>
+
+
+                <div>
+                  <section id="html5">
+                    <div id='Imprimible'>
+
+                      <!-- NUEVA TABLA -->
+                      <p-table #dt [columns]="columnas" [value]="rowsRegistros" [paginator]="true" [rows]="FilasXPagina"
+                        [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+
+                        <!-- CABECERA: FILTRO GENERAL   -->
+                        <ng-template pTemplate="caption">
+                          <div class="row ui-helper-clearfix" style="text-align: left">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                              <div style="width:100%; text-align: left">
+                                <div _ngcontent-yhv-c15="">
+                                  <div _ngcontent-yhv-c15="" class="input-group">
+                                    <div _ngcontent-yhv-c15="" class="input-group-prepend">
+                                      <span _ngcontent-yhv-c15="" class="input-group-text" id="basic-addon3">
+                                        <i _ngcontent-yhv-c15="" class="la la-search"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" _ngcontent-yhv-c15="" aria-describedby="basic-addon3"
+                                      class="form-control" placeholder="Filtro Global"
+                                      (input)="dt.filterGlobal($event.target.value, 'contains')">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-template>
+                        <!-- FIN CABECERA:  FILTRO GENERAL  -->
+
+                        <!-- CABECERA: NOMBRES DE COLUMNAS E INPUTS PARA BUSQUEDA POR CADA COLUMNA -->
+                        <ng-template pTemplate="header" let-columns>
+                          <tr>
+                            <th *ngFor="let col of columnas" [pSortableColumn]="col.field">
+                              {{col.header}}
+                              <p-sortIcon [field]="col.field"></p-sortIcon>
+                            </th>
+                          </tr>
+                          <tr>
+                            <th *ngFor="let col of columnas" [ngSwitch]="col.field" style="background-color: white;">
+                              <div class="input-container">
+                                <i class="fa fa-search"></i>
+                                <input type="text" class="input-buscar-p-table" id="iconLeft6" placeholder=""
+                                  (input)="dt.filter($event.target.value, col.field, 'contains')">
+                              </div>
+                            </th>
+                          </tr>
+                        </ng-template>
+                        <!-- FIN CABECERA: NOMBRES DE COLUMNAS E INPUTS PARA BUSQUEDA POR CADA COLUMNA -->
+
+                        <!-- REGISTROS DE LA TABLA -->
+                        <ng-template pTemplate="body" let-rowData let-columns="columnas">
+                          <tr [pSelectableRow]="rowData">
+                            <td *ngFor="let col of columnas">
+                              <span class="ui-column-title">{{col.header}}:</span>
+                              {{rowData[col.field]}}
+                            </td>
+                          </tr>
+                        </ng-template>
+                        <!-- FIN REGISTROS DE LA TABLA -->
+
+                        <!-- RESUMEN DE LA TABLA -->
+                        <ng-template pTemplate="summary">
+                          Registros: {{rowsRegistros?.length}}
+                        </ng-template>
+                        <!-- FIN RESUMEN DE LA TABLA -->
+
+                      </p-table>
+
+                    </div>
+                  </section>
+
+                </div>
+
+              </ng-container>
+
+            </m-card>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</div>
